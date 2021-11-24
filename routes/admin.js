@@ -110,5 +110,24 @@ router.get('/delete-user/:id', (req, res) => {
     })
 })
 
+router.get('/add-user', (req, res) => {
+    let errorMsg = req.session.errorMsg;
+    req.session.errorMsg = null;
+    res.render('admin/add-user', {title: 'Add User', admin: true, adminuser: req.session.adminuser, errorMsg })
+})
+
+router.post('/add-user', async (req, res, next) => {
+    let filledDetail = req.body;
+    userHelpers.doSignUp(filledDetail).then((response) => {
+        if (response.status) {
+            req.session.successMsg = 'User account created.'
+            res.redirect('/admin/users')
+        } else {
+            req.session.errorMsg = response.errorMsg
+            res.redirect('/admin/add-user')
+        }
+    })
+});
+
 
 module.exports = router;

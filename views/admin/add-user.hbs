@@ -4,15 +4,15 @@
             <div class="col-sm-12 col-12 col-md-12 col-lg-12 p-3">
                 <div class="card">
                     <div class="card-header">
-                        Sign Up
+                        Add User
                     </div>
                     <div class="card-body">
-                        <form id="userform" method="POST" action="/signup">
+                        <form id="userform" method="POST" action="/admin/add-user">
                             <div class="row">
-                                {{#if userSignUpErr }}
+                                {{#if errorMsg }}
                                     <div class="col-12 col-md-12 col-sm-12 col-lg-12">
                                         <div class="alert alert-danger">
-                                            {{ userSignUpErr }}
+                                            {{ errorMsg }}
                                         </div>
                                     </div>
                                 {{/if }}
@@ -56,7 +56,6 @@
                                 </div>
 
                                <div class="col-12 col-md-12 col-sm-12 col-lg-12">
-                                    <a class="float-start" href="/login">Already have account? Login</a>
                                     <button type="submit" class="btn btn-primary float-end">Submit</button>
                                 </div>
                             </div>
