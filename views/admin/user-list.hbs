@@ -1,0 +1,60 @@
+<section>
+    <div class="container">
+        {{#if successMsg }}
+        <div class="row">
+            <div class="col-md-12 col-12 col-sm-12 col-lg-12 alert alert-success">
+                {{ successMsg }}
+            </div>
+        </div>
+        {{/if }}
+
+        {{#if errorMsg }}
+        <div class="row">
+            <div class="col-md-12 col-12 col-sm-12 col-lg-12 alert alert-danger">
+                {{ errorMsg }}
+            </div>
+        </div>
+        {{/if }}
+
+        
+        <table class="table table-bordered table-striped my-5">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Username / Email</th>
+                    <th>Mobile</th>
+                    <th>Status</th>
+                    <th class="text-end">Options</th>
+                </tr>
+            </thead>
+            <tbody>
+                {{#each users}}
+                <tr>
+                    <td>{{this.firstName}} {{ this.lastName }}</td>
+                    <td>{{this.email}}</td>
+                    <td>{{ this.mobile }}</td>
+                    <td>
+                        {{#if this.isEnabled }}
+                        <span class="badge bg-success">Enabled</span>
+                        {{else }}
+                        <span class="badge bg-danger">Disabled</span>
+                        {{/if }}
+                    </td>
+                    <td class="text-end">
+                        <a class="btn btn-primary" href="/admin/edit-user/{{ this._id }}">Edit</a>
+                        {{#if this.isEnabled }}
+                        <a class="btn btn-secondary" onclick="return confirm('Are you sure to disable {{ this.firstName }} {{ this.lastName }} ? ')" href="/admin/disable-user/{{ this._id }}">Disable</a>
+                        {{else }}
+                        <a class="btn btn-success" onclick="return confirm('Are you sure to enable {{ this.firstName }} {{ this.lastName }} ? ')"  href="/admin/enable-user/{{ this._id }}">Enable</a>
+                        {{/if }}
+
+                        <a class="btn btn-danger" onclick="return confirm('Are you sure to delete {{ this.firstName }} {{ this.lastName }} ?')" href="/admin/delete-user/{{ this._id }}">
+                            Delete
+                        </a>
+                    </td>
+                </tr>
+                {{/each}}
+            </tbody>
+        </table>
+    </div>
+</section>

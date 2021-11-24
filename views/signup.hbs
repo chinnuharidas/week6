@@ -1,0 +1,69 @@
+<section>
+    <div class="container mt-3">
+        <div class="row">
+            <div class="col-sm-12 col-12 col-md-12 col-lg-12 p-3">
+                <div class="card">
+                    <div class="card-header">
+                        Sign Up
+                    </div>
+                    <div class="card-body">
+                        <form method="POST" action="/signup">
+                            <div class="row">
+                                {{#if userSignUpErr }}
+                                    <div class="col-12 col-md-12 col-sm-12 col-lg-12">
+                                        <div class="alert alert-danger">
+                                            {{ userSignUpErr }}
+                                        </div>
+                                    </div>
+                                {{/if }}
+                                <div class="col-12 col-md-6 col-sm-12 col-lg-6">
+                                    <div class="mb-3">
+                                        <label for="exampleInputFirstName" class="form-label">First Name</label>
+                                        <input type="text" name="firstName" class="form-control" id="exampleInputFirstName">
+                                    </div>
+                                </div>
+                                <div class="col-12 col-md-6 col-sm-12 col-lg-6">
+                                    <div class="mb-3">
+                                        <label for="exampleInputLastName" class="form-label">Last Name</label>
+                                        <input type="text" name="lastName" class="form-control" id="exampleInputLastName">
+                                    </div>
+                                </div>
+                                <div class="col-12 col-md-6 col-sm-12 col-lg-6">
+                                    <div class="mb-3">
+                                        <label for="exampleInputEmail" class="form-label">Email address</label>
+                                        <input type="email" name="email" class="form-control" id="exampleInputEmail">
+                                    </div>
+                                </div>
+                                <div class="col-12 col-md-6 col-sm-12 col-lg-6">
+                                    <div class="mb-3">
+                                        <label for="exampleInputMobile" class="form-label">Mobile</label>
+                                        <input type="text" name="mobile" maxlength="10" class="form-control" id="exampleInputMobile">
+                                    </div>
+                                </div>
+
+                                <div class="col-12 col-md-6 col-sm-12 col-lg-6">
+                                    <div class="mb-3">
+                                        <label for="exampleInputPassword" class="form-label">Password</label>
+                                        <input type="password" name="password" class="form-control" id="exampleInputPassword">
+                                    </div>
+                                </div>
+
+                                <div class="col-12 col-md-6 col-sm-12 col-lg-6">
+                                    <div class="mb-3">
+                                        <label for="exampleInputConfirmPassword" class="form-label">Confirm Password</label>
+                                        <input type="password" name="confirmpassword" class="form-control" id="exampleInputConfirmPassword">
+                                    </div>
+                                </div>
+
+                               <div class="col-12 col-md-12 col-sm-12 col-lg-12">
+                                    <a class="float-start" href="/login">Already have account? Login</a>
+                                    <button type="submit" class="btn btn-primary float-end">Submit</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

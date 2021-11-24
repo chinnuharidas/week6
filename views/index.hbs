@@ -1,0 +1,17 @@
+<section>
+    <div class="container mt-3">
+        <div class="row">
+            {{#each movies }}
+            <div class="col-xs-12 col-12 col-sm-12 col-md-3 col-xl-3">
+                <div class="card">
+                    <img src="images/default_movie.webp" class="card-img-top" alt="{{ this.name }}">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ this.name }}</h5>
+                        <p class="card-text">{{ this.description }}</p>
+                    </div>
+                </div>
+            </div>
+            {{/each }}
+        </div>
+    </div>
+</section>
