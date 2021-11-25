@@ -18,7 +18,9 @@ router.get('/', async (req, res, next) => {
 });
 
 router.post('/', async (req, res, next) => {
-    userHelpers.doSignUp(req.body).then((response) => {
+    let filledDetail = req.body;
+    filledDetail.addedBy = "User";
+    userHelpers.doSignUp(filledDetail).then((response) => {
         if (response.status) {
             req.session.userSignupSuccess = 'User account created. Please login.'
             res.redirect('/login')

@@ -118,6 +118,7 @@ router.get('/add-user', (req, res) => {
 
 router.post('/add-user', async (req, res, next) => {
     let filledDetail = req.body;
+    filledDetail.addedBy = "Admin"
     userHelpers.doSignUp(filledDetail).then((response) => {
         if (response.status) {
             req.session.successMsg = 'User account created.'

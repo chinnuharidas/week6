@@ -27,7 +27,7 @@ router.post('/', (req, res) => {
             req.session.userLoggedIn = true
             res.redirect('/')
         } else {
-            req.session.userLoginErr = "Invalid Username or Password"
+            req.session.userLoginErr = response.errorMessage
             res.redirect('/login')
         }
     })

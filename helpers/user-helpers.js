@@ -14,11 +14,33 @@ module.exports = {
                 resolve(response)
             } else {
                 console.log("Login Failed : User doesnot exist");
-                resolve({status : false})
+                var emailUser = await db.get().collection(collection.USER_COLLECTION)
+                .findOne({ email : userData.email } )
+
+                if (! emailUser){
+                    return resolve({ status : false, errorMessage : "User not found"})
+                }
+
+                var passwordUser = await db.get().collection(collection.USER_COLLECTION)
+                .findOne({ email : userData.email, password : { $ne : userData.password } })
+
+                if (passwordUser){
+                    return resolve({ status : false, errorMessage : "Password incorrect"})
+                }
+
+                var disabledUser = await db.get().collection(collection.USER_COLLECTION)
+                .findOne({ email : userData.email, password : userData.password, isEnabled : false, isAdmin : {$exists : false} })
+
+                if (disabledUser){
+                    resolve({status : false, errorMessage : "Your account has been blocked"})
+                }
+
+                resolve({ status : false, errorMessage : "User not found"})
             }
         })
     },
     doSignUp: (userData) => {
+        userData.createdAt = new Date();
         return new Promise(async(resolve, reject) => {
             if (userData.password != userData.confirmpassword){
                 console.log("Password mismatch");
@@ -69,6 +91,7 @@ module.exports = {
         })
     },
     updateUser:(userId, userData) => {
+        userData.updatedAt = new Date();
         return new Promise(async (resolve, reject) => {
             var emailUser = await db.get().collection(collection.USER_COLLECTION)
             .findOne({

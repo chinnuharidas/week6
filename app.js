@@ -6,6 +6,7 @@ var logger = require('morgan');
 var { create } = require('express-handlebars');
 var db = require('./config/connection')
 var session = require('express-session')
+var dateFormat = require('handlebars-dateformat');
 
 
 var indexRouter = require('./routes/index');
@@ -23,7 +24,10 @@ const hbs = create({
   layoutsDir: `${__dirname}/views/layouts`,
   extname : 'hbs',
   defaultLayout: 'layout',
-  partialsDir: `${__dirname}/views/partials`
+  partialsDir: `${__dirname}/views/partials`,
+  helpers:{
+    'dateFormat' : dateFormat
+  }
 });
 app.engine('hbs', hbs.engine);
 
